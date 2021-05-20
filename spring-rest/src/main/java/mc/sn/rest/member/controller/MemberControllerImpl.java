@@ -35,13 +35,13 @@ public class MemberControllerImpl   implements MemberController {
 			//데이터베이스에 해당 id가 있는지 체크하고 결과 전송
 			MemberVO memberVO = memberService.searchMember(userId);
 			String result = "false";
-			String id = memberVO.getId();
-			System.out.println(id+memberVO.getName());
+//			String id = memberVO.getId();
+//			System.out.println(id+memberVO.getName());
 			if(memberVO != null) {
 				result = "true";
 			}
 			result = "{\"result\":"+result+"}";
-			System.out.println(id +"\n========\n" + result);
+			System.out.println("\n========\n" + result);
 			//문장내의 쌍따옴표 \"
 		return result;
 	}
