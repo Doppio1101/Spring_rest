@@ -8,19 +8,29 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function checkID(){
+		var id = $("#userId").val();
 		alert('check '+$("#userId").val());
 		$.ajax(
 			{
 	         type:"get",
-	         url:"/rest/res1",
+	         url:"/rest/member/checkId.do",
 	         contentType: "application/json",
 	         data :{"userId":$("#userId").val()},
 		     success:function (data,textStatus){
-		    	 alert(data);
-		    	 $('#message').text(data);
+		    	 //아이디 중복 파악 여부
+		    	 //alert(data);
+		    	 var obj = JSON.parse(data);
+		    	 alert(obj.result);
+		    	 if(obj){
+		    		 $('#message').text(id+"중복되는 아이디 사용불가능");	 
+		    	 }else{
+		    		 $('#message').text(id+"사용가능");
+		    	 }
+		    	 
 		     },
 		     error:function(data,textStatus){
-		        alert("에러가 발생했습니다.");
+		        alert("사용가능한 아이디입니다.");
+		        $('#message').text(id+"사용가능");
 		     },
 		     complete:function(data,textStatus){
 		    	 
